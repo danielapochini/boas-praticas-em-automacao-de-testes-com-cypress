@@ -10,20 +10,19 @@ describe('Hardcoded assertion bad practice', () => {
     cy.wait('@getStories')
   })
 
-  it('searches', () => { 
+  it('searches', () => {
+    const { hits } = require('../../fixtures/stories')
     cy.search('cypress.io')
     cy.wait('@getStories')
 
-    cy.fixture('stories').then(stories => {
-      cy.get('.table-row')
-        .as('tableRows')
-        .should('have.length', stories.hits.length)
+    cy.get('.table-row')
+      .as('tableRows')
+      .should('have.length', hits.length)
 
-      stories.hits.forEach((hit, index) => {
-        cy.get('@tableRows')
-          .eq(index)
-          .should('contain', hit.title)
-      })
+    hits.forEach((hit, index) => {
+      cy.get('@tableRows')
+        .eq(index)
+        .should('contain', hit.title)
     })
   })
 })
