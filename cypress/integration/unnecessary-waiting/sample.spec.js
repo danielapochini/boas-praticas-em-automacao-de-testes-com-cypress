@@ -20,8 +20,8 @@ describe('Unnecessary waiting bad practice', () => {
       .clear()
       .type(info.description)
     cy.get('input[type="submit"]')
-      .click()
-    cy.wait(3000)
+    //utilizar timeout caso necessário: cy.get('input[type="submit"]', { timeout:3000 })
+      .click() 
 
     cy.url()
       .should(
