@@ -4,7 +4,7 @@ describe('Sensitive data bad practice', () => {
   })
 
   it('fills the form with sensitive data', () => {
-    cy.get('#email').type('joe@example.com')
-    cy.get('#password').type('s3Cr€7-p@s5w0rd')
+    cy.get('#email').type(Cypress.env('user').username)
+    cy.get('#password').type(Cypress.env('user').password, {log: false})
   })
 })
