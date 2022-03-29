@@ -1,11 +1,8 @@
 describe('Slow tests bad practice - Sample 2', () => {
   it('does not enable signup on different passwords', () => {
-    cy.visit('https://notes-serverless-app.com')
+    cy.visit('https://notes-serverless-app.com/signup')
 
-    cy.contains('.btn', 'Signup')
-      .click()
-
-    cy.get('#email').type('joe@example.com')
+    cy.get('#email').type(Cypress.env('user').email)
     cy.get('#password').type('foobarbaz')
     cy.get('#confirmPassword').type('foobahbaz')
 
